@@ -17,7 +17,21 @@
         <img class="avatar" src="pictures/unbeatable.png" alt="">
     </header>
     <main>
-        <img class="banner" src="pictures/twingo.jpg" alt="">
+        <h1 class="Subtitle">News</h1>
+        <div class="slider">
+            <div class="viewport">
+                <div class="track">
+                    <img class="banner" src="pictures/twingo.jpg" alt="">
+                    <img class="banner" src="pictures/bigH.jpg" alt="">
+                    <img class="banner" src="pictures/bigV.png" alt="">
+                    <img class="banner" src="pictures/priv.png" alt="">
+                    <img class="banner" src="pictures/kit.png" alt="">
+                </div>
+            </div>
+            <button class="prev btn_Slider">&lt</button>
+            <button class="next btn_Slider">&gt</button>
+        </div>
+        <h1 class="Subtitle">Posts</h1>
         <div class="scrollable">
             <div class="scrollable_picture">
                 <img src="pictures/goat.jpg" alt="there's supposed to be an image here">
@@ -65,5 +79,34 @@
         <h3>Where to find us</h3>
         <h3>FAQ</h3>
     </footer>
+    <script>
+        const track = document.querySelector(".track");
+      const viewport = document.querySelector(".viewport");
+      const prev = document.querySelector(".prev");
+      const next = document.querySelector(".next");
+      const count = track.querySelectorAll("img").length;
+      const width = viewport.clientWidth;
+      let currIndex = 0;
+
+      next.addEventListener("click", () => {
+        // if (currIndex < count - 1) {
+        //   currIndex++;
+        // } else {
+        //   currIndex = 0;
+        // }
+        currIndex++;
+        track.style.transform = `translateX(-${width * currIndex}px)`;
+      });
+
+      prev.addEventListener("click", () => {
+        // if (currIndex > 0) {
+        //   currIndex--;
+        // } else {
+        //   currIndex = count - 1;
+        // }
+        currIndex--;
+        track.style.transform = `translateX(-${width * currIndex}px)`;
+      });
+    </script>
 </body>
 </html>
