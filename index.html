@@ -1,92 +1,182 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+  </head>
+  <body>
     <header>
-        <i class="fa-regular fa-house fa-3x">
-        </i>
-        <div class="titleborder">
-            <h3 class="title">LFGarden</h3>
-        </div>
-        <img class="avatar" src="pictures/unbeatable.png" alt="">
+      <i class="fa-regular fa-house fa-3x"> </i>
+      <div class="titleborder">
+        <h3 class="title">LFGarden</h3>
+      </div>
+      <!-- <img class="avatar" src="pictures/unbeatable.png" alt=""> -->
+      <button class="btnPrimary" id="createPost"></button>
     </header>
     <main>
-        <h1 class="Subtitle">News</h1>
-        <div class="slider">
-            <div class="viewport">
-                <div class="track">
-                    <img class="banner" src="pictures/twingo.jpg" alt="">
-                    <img class="banner" src="pictures/bigH.jpg" alt="">
-                    <img class="banner" src="pictures/bigV.png" alt="">
-                    <img class="banner" src="pictures/priv.png" alt="">
-                    <img class="banner" src="pictures/kit.png" alt="">
-                </div>
+      <div id="postModal" class="modal">
+        <div class="postPopup">
+          <span class="close">&times;</span>
+          <h2>Create Post</h2>
+          <form id="postForm">
+            <div class="formGroup">
+              <label for="postTitle">Title:</label>
+              <input type="text" id="postTitle" name="title" required />
             </div>
-            <button class="prev btn_Slider">&lt</button>
-            <button class="next btn_Slider">&gt</button>
+            <div class="formGroup">
+              <label for="peopleReq">How many people do you need?</label>
+              <input
+                type="number"
+                max="10"
+                id="peopleReq"
+                name="peopleReq"
+                required
+              />
+            </div>
+            <div class="formGroup">
+              <label for="imgLink">link to the banner of your post</label>
+              <input type="text" id="imgLink" name="imgLink" required />
+            </div>
+            <button type="submit" class="btnPrimary">Post</button>
+          </form>
         </div>
-        <h1 class="Subtitle">Posts</h1>
-        <div class="scrollable">
-            <div class="scrollable_picture">
-                <img src="pictures/goat.jpg" alt="there's supposed to be an image here">
-                <h3>D2 VoD KWTD need 2 warlocks</h3>
-                <h3>3/6</h3>
-            </div>
-            <div class="scrollable_picture">
-                <img src="pictures/hongkong.jpg" alt="there's supposed to be an image here">
-                <h3>GTFO R7</h3>
-                <h3>2/4</h3>
-            </div>
-            <div class="scrollable_picture">
-                <img src="pictures/honse.jpg" alt="there's supposed to be an image here">
-                <h3>RoN plase save us</h3>
-                <h3>5/6</h3>
-            </div>
-            <div class="scrollable_picture">
-                <img src="pictures/uma.png" alt="there's supposed to be an image here">
-                <h3>Teaching SE</h3>
-                <h3>6/6</h3>
-            </div>
-            <div class="scrollable_picture">
-                <img src="pictures/Untitled.jpg" alt="there's supposed to be an image here">
-                <h3>I hate my life</h3>
-                <h3>1/6</h3>
-            </div>
-            <div class="scrollable_picture">
-                <img src="pictures/wyld.jpg" alt="there's supposed to be an image here">
-                <h3>PLaceholder text</h3>
-                <h3>4/6</h3>
-            </div>
-            <div class="scrollable_picture">
-                <img src="pictures/goat.jpg" alt="there's supposed to be an image here">
-                <h3>PLaceholder</h3>
-                <h3>2/6</h3>
-            </div>
-            <div class="scrollable_picture">
-                <img src="pictures/goat.jpg" alt="there's supposed to be an image here">
-                <h3>Text</h3>
-                <h3>5/6</h3>
-            </div>
+      </div>
+      <h1 class="Subtitle">News</h1>
+      <div class="slider">
+        <div class="viewport">
+          <div class="track">
+            <img class="banner" src="pictures/twingo.jpg" alt="" />
+            <img class="banner" src="pictures/bigH.jpg" alt="" />
+            <img class="banner" src="pictures/bigV.png" alt="" />
+            <img class="banner" src="pictures/priv.png" alt="" />
+            <img class="banner" src="pictures/kit.png" alt="" />
+          </div>
         </div>
+        <button class="prev btn_Slider">&lt</button>
+        <button class="next btn_Slider">&gt</button>
+      </div>
+      <h1 class="Subtitle">Posts</h1>
+      <div class="scrollable" id="scrollable">
+        <div class="scrollable_picture">
+          <img
+            src="pictures/goat.jpg"
+            alt="there's supposed to be an image here"
+          />
+          <h3>D2 VoD KWTD need 2 warlocks</h3>
+          <h3>3/6</h3>
+        </div>
+        <div class="scrollable_picture">
+          <img
+            src="pictures/hongkong.jpg"
+            alt="there's supposed to be an image here"
+          />
+          <h3>GTFO R7</h3>
+          <h3>2/4</h3>
+        </div>
+        <div class="scrollable_picture">
+          <img
+            src="pictures/honse.jpg"
+            alt="there's supposed to be an image here"
+          />
+          <h3>RoN plase save us</h3>
+          <h3>5/6</h3>
+        </div>
+        <div class="scrollable_picture">
+          <img
+            src="pictures/uma.png"
+            alt="there's supposed to be an image here"
+          />
+          <h3>Teaching SE</h3>
+          <h3>6/6</h3>
+        </div>
+        <div class="scrollable_picture">
+          <img
+            src="pictures/Untitled.jpg"
+            alt="there's supposed to be an image here"
+          />
+          <h3>I hate my life</h3>
+          <h3>1/6</h3>
+        </div>
+        <div class="scrollable_picture">
+          <img
+            src="pictures/wyld.jpg"
+            alt="there's supposed to be an image here"
+          />
+          <h3>PLaceholder text</h3>
+          <h3>4/6</h3>
+        </div>
+        <div class="scrollable_picture">
+          <img
+            src="pictures/goat.jpg"
+            alt="there's supposed to be an image here"
+          />
+          <h3>PLaceholder</h3>
+          <h3>2/6</h3>
+        </div>
+        <div class="scrollable_picture">
+          <img
+            src="pictures/goat.jpg"
+            alt="there's supposed to be an image here"
+          />
+          <h3>Text</h3>
+          <h3>5/6</h3>
+        </div>
+      </div>
     </main>
     <footer>
-        <h3>Where to find us</h3>
-        <h3>FAQ</h3>
+      <h3>Where to find us</h3>
+      <h3>FAQ</h3>
     </footer>
     <script>
-        const track = document.querySelector(".track");
+      const createBtn = document.getElementById("createPost");
+      const modal = document.getElementById("postModal");
+      const postForm = document.getElementById("postForm");
+      const closeBtn = document.querySelector(".close");
+      const track = document.querySelector(".track");
       const viewport = document.querySelector(".viewport");
       const prev = document.querySelector(".prev");
       const next = document.querySelector(".next");
       const count = track.querySelectorAll("img").length;
+      const scrollable = document.getElementById("scrollable");
       const width = viewport.clientWidth;
       let currIndex = 0;
+
+      createBtn.addEventListener("click", () => {
+        modal.style.display = "block";
+        postForm.reset();
+      });
+
+      closeBtn.addEventListener("click", () => {
+        modal.style.display = "none";
+      });
+
+      window.addEventListener("click", (event) => {
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      });
+
+      postForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const title = document.getElementById("postTitle").value;
+        const peopleReq = document.getElementById("peopleReq").value;
+        const imgLink = document.getElementById("imgLink").value;
+        scrollable.insertAdjacentHTML("beforeend", `<div class="scrollable_picture">
+          <img
+            src="${imgLink}"
+            alt="there's supposed to be an image here"
+          />
+          <h3>${title}</h3>
+          <h3>0/${peopleReq}</h3>
+        </div>`)
+        modal.style.display = "none";
+      });
 
       next.addEventListener("click", () => {
         // if (currIndex < count - 1) {
@@ -108,5 +198,5 @@
         track.style.transform = `translateX(-${width * currIndex}px)`;
       });
     </script>
-</body>
+  </body>
 </html>
