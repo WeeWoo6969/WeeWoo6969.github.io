@@ -20,6 +20,8 @@ header {
 }
 .track {
   display: flex;
+  gap: 30px;
+  margin-bottom: 20px;
   transition: 0.3s ease
 }
 .viewport {
@@ -41,7 +43,7 @@ header {
   right: 0px;
 }
 .track img {
-   margin: 30px;
+  
   object-fit: fill;
   width: 75vw;
   height: 50vh;
@@ -156,8 +158,8 @@ i {
   border-color: white;
   border-width: 2px;
   border-radius: 10px;
-  height: 40%;
-  width: 75%;
+  max-height: 40%;
+  max-width: 75%;
 }
 
 footer {
@@ -235,4 +237,9 @@ footer > h3 {
   width: 7%;
   height: 50%;
   align-self: center;
+}
+
+.errorMsg {
+  color: red;
+  display: none;
 }
