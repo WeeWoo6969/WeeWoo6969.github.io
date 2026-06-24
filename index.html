@@ -11,8 +11,8 @@
     />
   </head>
   <body>
-    <header>
-      <i class="fa-regular fa-house fa-3x"> </i>
+    <header id="header">
+      <i class="fa-regular fa-house fa-3x" id="house"> </i>
       <div class="titleborder">
         <h3 class="title">LFGarden</h3>
       </div>
@@ -130,8 +130,11 @@
         </div>
       </div>
     </main>
-    <footer>
+    <footer id="footer">
       <h3>Where to find us</h3>
+      <div id="box" class="box">
+        <div id="squre" class="squre"></div>
+      </div>
       <h3>FAQ</h3>
     </footer>
     <script>
@@ -149,7 +152,92 @@
       const slides = track.querySelectorAll("img");
       const peopleReqInput = document.getElementById("peopleReq");
       const errorMsg = document.getElementById("errorMsg");
+      const house = document.getElementById("house");
+      const header = document.getElementById("header");
+      const footer = document.getElementById("footer");
+      const box = document.getElementById("box");
+      const squre = document.getElementById("squre");
       let currIndex = 0;
+      let currTheme = 0;
+
+      squre.onmousedown = (event) => {
+        event.preventDefault();
+        if (event.button !== 0) return;
+        const leftstop =
+          box.getBoundingClientRect().width -
+          squre.getBoundingClientRect().width;
+        const offsetX = event.clientX - squre.getBoundingClientRect().left;
+
+        squre.style.position = "absolute";
+        moveTo(event);
+
+        function moveTo(event) {
+          let left = event.pageX - offsetX - box.getBoundingClientRect().left;
+          if (left > leftstop) left = leftstop;
+          if (left < 0) left = 0;
+
+          counter = Math.floor((left / leftstop) * 100);
+
+          const step = 50;
+          const threshold = 25;
+          let snappedPercent = Math.round(counter / step) * step;
+
+          if (Math.abs(counter - snappedPercent) < threshold) {
+            counter = snappedPercent;
+            left = (counter / 100) * leftstop;
+          }
+
+          squre.style.left = left + "px";
+
+          box.style.background =
+            "linear-gradient(90deg, #833AB4 " +
+            counter +
+            "%, rgba(0, 0, 0, 1) 0%)";
+
+          if (counter < 50) {
+            document.body.style.backgroundColor = "#94c2a7";
+            header.style.background = "#be986d";
+            footer.style.background = "#be986d";
+          }
+
+          if (counter == 50) {
+            document.body.style.backgroundColor = "#212126";
+            header.style.background = "#833AB4";
+            footer.style.background = "#833AB4";
+          }
+
+          if (counter > 50) {
+            document.body.style.backgroundColor = "#833AB4";
+            header.style.background = "#212126";
+            footer.style.background = "#212126";
+          }
+        }
+        document.addEventListener("mousemove", moveTo);
+        document.onmouseup = (event) => {
+          if (event.button !== 0) return;
+          document.removeEventListener("mousemove", moveTo);
+          document.onmouseup = null;
+        };
+      };
+
+      // house.addEventListener("dblclick", (e) => {
+      //   if (currTheme == 0) {
+      //     document.body.style.backgroundColor = "#212126";
+      //     header.style.background = "#833AB4";
+      //     footer.style.background = "#833AB4";
+      //     currTheme += 1;
+      //     console.log(currTheme);
+      //     return currTheme;
+      //   }
+      //   if (currTheme == 1) {
+      //     document.body.style.backgroundColor = "#94c2a7";
+      //     header.style.background = "#be986d";
+      //     footer.style.background = "#be986d";
+      //     currTheme -= 1;
+      //     console.log(currTheme);
+      //     return currTheme;
+      //   }
+      // });
 
       function getSlideOffset(index) {
         let offset = 0;
@@ -175,19 +263,18 @@
       });
 
       peopleReqInput.addEventListener("keydown", (e) => {
-        console.log("event happened")
+        console.log("event happened");
         const value = peopleReqInput.value;
         console.log(value);
-        if (!(e.key in [0,1,2,3,4,5,6,7,8,9])) {
+        if (!(e.key in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9])) {
           e.preventDefault();
           errorMsg.textContent = "please enter a number";
           errorMsg.style.display = "block";
-        }
-        else {
+        } else {
           errorMsg.textContent = "";
           errorMsg.style.display = "none";
         }
-      })
+      });
 
       postForm.addEventListener("submit", (e) => {
         e.preventDefault();

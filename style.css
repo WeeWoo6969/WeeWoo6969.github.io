@@ -22,7 +22,7 @@ header {
   display: flex;
   gap: 30px;
   margin-bottom: 20px;
-  transition: 0.3s ease
+  transition: 0.3s ease;
 }
 .viewport {
   overflow: hidden;
@@ -34,7 +34,6 @@ header {
   transform: translateY(-50%);
   cursor: pointer;
   border: none;
-  
 }
 .prev {
   left: 0px;
@@ -43,7 +42,6 @@ header {
   right: 0px;
 }
 .track img {
-  
   object-fit: fill;
   width: 75vw;
   height: 50vh;
@@ -112,7 +110,6 @@ i {
   align-self: center;
   margin: 30px;
 }
-
 
 .scrollable {
   height: fit-content;
@@ -242,4 +239,28 @@ footer > h3 {
 .errorMsg {
   color: red;
   display: none;
+}
+
+.squre {
+  height: 100%;
+  width: 10%;
+  background-color: #833AB4;
+  border-right: 2px black solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.box {
+  background: linear-gradient(
+    90deg,
+    #833AB4 0%,
+    rgba(0, 0, 0, 1) 0%
+  );
+  border: 2px black solid;
+  height: 50%;
+  width: 30%;
+
+  position: relative;
+  align-items: center;
 }
